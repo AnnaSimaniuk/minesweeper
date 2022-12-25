@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    color: #5e5e5e;
+}
+
+.title {
+    text-transform: uppercase;
+    position: relative;
+}
+
+.title::before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    background-image: url(img/mina.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: -40px;
+}
+
+.input-size {
+    width: 40px;
+    color: #5e5e5e;
+    border-radius: 5px;
+    border: 1px solid #c0c0c0;
+}
+
+.input-size:focus-visible {
+    outline: none;
+    border: 2px solid #c0c0c0;
+}
+
+.btn-size {
+    width: 79px;
+    height: 22px;
+    margin-left: 5px;
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    transition: .2s linear;
+    background: #c0c0c0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #5e5e5e;
+    cursor: pointer;
+}
+
+.btn:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #c0c0c0;
+}
+
+.error {
+    display: none;
+    color: red;
+    position: relative;
+    font-size: 12px;
+    top: -17px;
+    left: 33px;
+}
+
+.scoreboard {
+    display: flex;
+    gap: 50px;
+    position: relative;
+}
+
+.count-mina::before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-image: url(img/mina.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: -23px;
+    top: -1px;
+}
+
+.count-flag::before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-image: url(img/flag.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: 43px;
+    top: -1px;
+}
+
+table {
+    border-spacing: 0;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ececec;
+}
+
+td {
+    width: 30px;
+    height: 30px;
+    border: 2px outset #ececec;
+    background-color: #c0c0c0;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+}
+
+.mina {
+    background-color: #c0c0c0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.flag {
+    background-color: lightgray;
+    background-image: url("img/flag.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.td_check {
+    background-color: lightgray;
+    border: 1px inset #ececec;
+}
+
+.btn-new-game {
+    display: none;
+    text-decoration: none;
+    width: 150px;
+    height: 30px;
+}

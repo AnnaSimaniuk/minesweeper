@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Minesweeper</title>
+</head>
+<body>
+<div class="wrapper">
+    <h1 class="title">Minesweeper</h1>
+    <label>Specify the field size <input class='input-size' type="number" placeholder="8">
+        <button class="btn-size btn">Create</button>
+    </label>
+    <span class="error">Value must be greater than 3</span>
+    <div class="scoreboard">
+        <div class="count-mina"></div>
+        <div class="count-flag"></div>
+    </div>
+
+    <table></table>
+
+    <div class="message"></div>
+    <button class="btn-new-game btn">Start New Game</button>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
