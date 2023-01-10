@@ -47,7 +47,7 @@ function createGame() {
         const allCells = size * size;
         for (let i = 0; i < Math.floor(allCells / 6); i++) {
             mina = Math.floor(Math.random() * allCells);
-            if (tdArr[mina].classList.contains('mina')){
+            if (tdArr[mina].classList.contains('mina')) {
                 mina = Math.floor(Math.random() * allCells);
                 tdArr[mina].classList.add('mina');
             } else {
@@ -166,9 +166,7 @@ function clickTd(td) {
             td.classList.add('td_check');
             td.textContent = num;
             td.style.color = numberColors[num - 1];
-            setTimeout(() => {
-                victory();
-            }, 100);
+            victory();
             return;
         } else {
             checkTd(td, coordinate);
@@ -185,38 +183,52 @@ function checkTd(td, coordinate) {
     let x = +coords[0];
     let y = +coords[1];
 
+    const dblClickEndGame = target => {
+        if (target.classList.contains('mina') && !target.classList.contains('flag')) {
+            endGame(td)
+        }
+    }
+
     setTimeout(() => {
         if (x > 0) {
             let targetW = document.querySelector(`[data-td="${x - 1},${y}"`);
             clickTd(targetW, `${x - 1},${y}`);
+            dblClickEndGame(targetW);
         }
         if (x < tdSize - 1) {
             let targetE = document.querySelector(`[data-td="${x + 1},${y}"`);
             clickTd(targetE, `${x + 1},${y}`);
+            dblClickEndGame(targetE);
         }
         if (y > 0) {
             let targetN = document.querySelector(`[data-td="${x},${y - 1}"]`);
             clickTd(targetN, `${x},${y - 1}`);
+            dblClickEndGame(targetN);
         }
         if (y < tdSize - 1) {
             let targetS = document.querySelector(`[data-td="${x},${y + 1}"]`);
             clickTd(targetS, `${x},${y + 1}`);
+            dblClickEndGame(targetS);
         }
         if (x > 0 && y > 0) {
             let targetNW = document.querySelector(`[data-td="${x - 1},${y - 1}"`);
             clickTd(targetNW, `${x - 1},${y - 1}`);
+            dblClickEndGame(targetNW);
         }
         if (x < tdSize - 1 && y < tdSize - 1) {
             let targetSE = document.querySelector(`[data-td="${x + 1},${y + 1}"`);
             clickTd(targetSE, `${x + 1},${y + 1}`);
+            dblClickEndGame(targetSE);
         }
         if (y > 0 && x < tdSize - 1) {
             let targetNE = document.querySelector(`[data-td="${x + 1},${y - 1}"]`);
             clickTd(targetNE, `${x + 1},${y - 1}`);
+            dblClickEndGame(targetNE);
         }
         if (x > 0 && y < tdSize - 1) {
             let targetSW = document.querySelector(`[data-td="${x - 1},${y + 1}"`);
             clickTd(targetSW, `${x - 1},${y + 1}`);
+            dblClickEndGame(targetSW);
         }
     }, 10);
 }
@@ -283,10 +295,7 @@ function dblclickTd(td) {
             }
         }
         if (num === countFlag) {
-            checkTd(td, coordinate);
-            if (minas.includes(coordinate)) {
-                endGame(td)
-            }
+            checkTd(td, coordinate)
         }
     }
 }
@@ -296,15 +305,17 @@ function dblclickTd(td) {
 function endGame(td) {
     const tdArr = Array.from(document.getElementsByTagName('td'));
     gameOver = true;
-    message.textContent = 'GAME OVER!'
+    message.textContent = 'GAME OVER!';
     let coordinate = td.getAttribute('data-td');
     tdArr.forEach(td => {
         if (minas.includes(coordinate)) {
             td.classList.remove('flag');
             td.classList.add('td_check');
+            td.style.cursor = 'default';
         }
         if (td.classList.contains('mina')) {
             td.style.backgroundImage = 'url("img/mina.png")';
+            td.style.cursor = 'default';
         }
     })
 }
@@ -320,6 +331,7 @@ const victory = () => {
     });
     if (win) {
         message.textContent = 'YOU WIN';
+        tdArr.forEach(td => td.style.cursor = 'default');
         gameOver = true;
     }
 }
